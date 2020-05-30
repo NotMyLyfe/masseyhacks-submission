@@ -1,7 +1,7 @@
 # COVID Data (Working title)
 This project aims to use the latest statistics sourced from an API (https://covid19api.com/) referencing Johns Hopkins CSSE for presentation on a website and Discord bot.
 
-## The (url here) Website
+## The [covidstats.tech](https://covidstats.tech) Website
 THe website will have a basic overview of (basic statistics list here) on the front page. (maybe) There will be dedicated pages that display more detailed information. (/maybe)
 
 ## The Discord Bot
