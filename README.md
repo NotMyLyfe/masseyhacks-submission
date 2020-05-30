@@ -7,5 +7,8 @@ THe website will have a basic overview of (basic statistics list here) on the fr
 ## The Discord Bot
 This Discord bot will send COVID data in a conviniently packaged embed message. This makes it easily integratable into the chatting experiences of many.
 
+### Bot Commands
+not yet
+
 ### Bot Invite
-(url here)
+https://discord.com/api/oauth2/authorize?client_id=716343563083972618&permissions=281664&scope=bot
