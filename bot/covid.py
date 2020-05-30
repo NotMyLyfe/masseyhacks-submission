@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import logging # remove logging in release
+import logging  # remove logging in release
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -9,7 +9,6 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 bot = commands.Bot(command_prefix='c!', description="A bot with COVID-19 Statistics")
-
 
 file = 'token.txt'
 with open(file, 'r') as token:
