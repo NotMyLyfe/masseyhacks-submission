@@ -5,7 +5,7 @@ This project aims to use the latest statistics sourced from the WHO and present 
 THe website will have a basic overview of (basic statistics list here) on the front page. (maybe) There will be dedicated pages that display more detailed information. (/maybe)
 
 ## The Discord Bot
-This Discord bot will send COVID data in a conviniently packaged embed message. This makes it easily integratable into the chatting experiences of many.
+This Discord bot will send COVID data in a conviniently packaged embed message. This makes it easily integratable into the casual chatting experience.
 
 ### Bot Commands
 not yet
