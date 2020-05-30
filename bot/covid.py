@@ -33,13 +33,18 @@ async def help(ctx):
 @bot.command()
 async def data(ctx, arg1):
     country = arg1.lower()
-    try:
-        url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
-        infos = requests.get(url)
-        print(infos)
-    except discord.ext.commands.MissingRequiredArgument:
-        await ctx.send("ERROR: You did not provide a valid country code.")
+    url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
+    infos = requests.get(url)
+    print(infos.text)
     await ctx.send('wowie it didnt die')
+
+
+@data.error
+async def data_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Incorrect syntax. The correct syntax is c!data [country code]")
+    else:
+        raise error
 
 
 while True:
