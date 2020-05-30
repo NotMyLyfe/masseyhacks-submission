@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import requests
+import json
 import logging  # remove logging in release
 
 logger = logging.getLogger('discord')
@@ -35,6 +36,12 @@ async def data(ctx, arg1):
     country = arg1.lower()
     url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
     infos = requests.get(url)
+    if infos:
+        infos == infos.json()
+        print(type(infos))
+        print(infos)
+    else:
+        await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
     print(infos.text)
     await ctx.send('wowie it didnt die')
 
