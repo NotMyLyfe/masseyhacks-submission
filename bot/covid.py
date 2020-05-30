@@ -32,12 +32,12 @@ async def help(ctx):
 
 @bot.command()
 async def data(ctx, arg1):
-    country = arg1.lower
+    country = arg1.lower()
     try:
         url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
         infos = requests.request(url=url)
         print(infos)
-    except IndexError:
+    except discord.ext.commands.MissingRequiredArgument:
         await ctx.send("ERROR: You did not provide a valid country code.")
     await ctx.send(embed=emb)
 
