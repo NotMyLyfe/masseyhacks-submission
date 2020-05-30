@@ -22,9 +22,9 @@
             .then(response => response.json())
             .then(data => {
               if (data.country.isoAlpha2 === 'US') {
-                document.append('<p>Your local health agency is the <a href="https://cdc.gov">CDC</a>.</p>')
+                document.body.append('<p>Your local health agency is the <a href="https://cdc.gov">CDC</a>.</p>')
               } else if (data.country.isoAlpha2 === 'CA') {
-                document.append('<p>Your local health agency is the <a href="https://www.phac-aspc.gc.ca/">Public Health Agency of Canada</a>.</p>')
+                document.body.append('<p>Your local health agency is the <a href="https://www.phac-aspc.gc.ca/">Public Health Agency of Canada</a>.</p>')
               };
             });
         }) 
