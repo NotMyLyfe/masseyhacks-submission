@@ -31,10 +31,15 @@ async def help(ctx):
 
 
 @bot.command()
-async def data(ctx, *args):
-    dater = "https://who.com/api-idk/{}data"
-    dater = dater.format(args[0].lower)
-    await ctx.send(requests.request(dater))
+async def data(ctx, arg1):
+    country = arg1.lower
+    try:
+        url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
+        data = requests.request(url=url)
+        print(data)
+    except IndexError:
+        await ctx.send("ERROR: You did not provide a valid country code.")
+    await ctx.send(embed=emb)
 
 
 while True:
