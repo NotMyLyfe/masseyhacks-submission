@@ -38,12 +38,13 @@ async def data(ctx, arg1):
     infos = requests.get(url)
     if infos:
         infos = json.loads(infos.text)
-        print(type(infos))
         print(infos)
+        emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['title']),
+                            description="Total Cases: ".format(str(infos['total_cases'])), color=0xff0000)
+        emb.add_field(name="Total Recovered", value=str(infos['total_recovered']), inline=True)
+        await ctx.send(embed=emb)
     else:
         await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
-    print(infos.text)
-    await ctx.send('wowie it didnt die')
 
 
 @data.error
