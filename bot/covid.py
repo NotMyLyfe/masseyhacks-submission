@@ -13,8 +13,7 @@ logger.addHandler(handler)
 bot = commands.Bot(command_prefix='c!', description="A bot with COVID-19 Statistics")
 bot.remove_command('help')
 
-file = 'token.txt'
-with open(file, 'r') as token:
+with open('token.txt', 'r') as token:
     token = token.read()
 
 
@@ -38,9 +37,8 @@ async def data(ctx, arg1):
     infos = requests.get(url)
     if infos:
         infos = json.loads(infos.text)
-        print(infos)
-        infos = infos['countrydata']
-        emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['title']),
+        infos = infos['countrydata'][0]
+        emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['info']['title']),
                             description="Total Cases: ".format(str(infos['total_cases'])), color=0xff0000)
         emb.add_field(name="Total Recovered", value=str(infos['total_recovered']), inline=True)
         await ctx.send(embed=emb)
