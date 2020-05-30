@@ -39,7 +39,7 @@ async def data(ctx, arg1):
         infos = json.loads(infos.text)
         infos = infos['countrydata'][0]
         emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['info']['title']),
-                            description="Total Cases: ".format(str(infos['total_cases'])), color=0xff0000)
+                            description="Total Cases: {}".format(str(infos['total_cases'])), color=0xff0000)
         emb.add_field(name="Total Recovered", value=str(infos['total_recovered']), inline=True)
         await ctx.send(embed=emb)
     else:
