@@ -41,6 +41,12 @@ async def data(ctx, arg1):
         emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['info']['title']),
                             description="Total Cases: {}".format(str(infos['total_cases'])), color=0xff0000)
         emb.add_field(name="Total Recovered", value=str(infos['total_recovered']), inline=True)
+        emb.add_field(name="Total Unresolved", value=str(infos['total_unresolved']), inline=True)
+        emb.add_field(name="Total Deaths", value=str(infos['total_deaths']), inline=True)
+        emb.add_field(name="Total New Cases Today", value=str(infos['total_new_cases_today']), inline=True)
+        emb.add_field(name="Total New Deaths Today", value=str(infos['total_new_deaths_today']), inline=True)
+        emb.add_field(name="Total Active Cases", value=str(infos['total_active_cases']), inline=True)
+        emb.add_field(name="Total Serious Cases", value=str(infos['total_serious_cases']), inline=True)
         await ctx.send(embed=emb)
     else:
         await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
