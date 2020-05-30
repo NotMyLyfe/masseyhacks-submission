@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import requests
+import json
 import logging  # remove logging in release
 
 logger = logging.getLogger('discord')
@@ -35,8 +36,15 @@ async def data(ctx, arg1):
     country = arg1.lower()
     url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
     infos = requests.get(url)
-    print(infos.text)
-    await ctx.send('wowie it didnt die')
+    if infos:
+        infos = json.loads(infos.text)
+        print(infos)
+        emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['title']),
+                            description="Total Cases: ".format(str(infos['total_cases'])), color=0xff0000)
+        emb.add_field(name="Total Recovered", value=str(infos['total_recovered']), inline=True)
+        await ctx.send(embed=emb)
+    else:
+        await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
 
 
 @data.error
