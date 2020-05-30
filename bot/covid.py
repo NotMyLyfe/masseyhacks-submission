@@ -35,9 +35,13 @@ async def data(ctx, arg1):
     country = arg1.lower()
     url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
     infos = requests.get(url)
-    if infos:
-        infos = json.loads(infos.text)
+    infos = json.loads(infos.text)
+    try:
         infos = infos['countrydata'][0]
+    except KeyError:
+        await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
+        return
+    finally:
         emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['info']['title']),
                             description="Total Cases: {}".format(str(infos['total_cases'])), color=0xff0000)
         emb.add_field(name="Total Recovered", value=str(infos['total_recovered']), inline=True)
@@ -48,8 +52,6 @@ async def data(ctx, arg1):
         emb.add_field(name="Total Active Cases", value=str(infos['total_active_cases']), inline=True)
         emb.add_field(name="Total Serious Cases", value=str(infos['total_serious_cases']), inline=True)
         await ctx.send(embed=emb)
-    else:
-        await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
 
 
 @data.error
