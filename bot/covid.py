@@ -37,7 +37,7 @@ async def data(ctx, arg1):
     url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
     infos = requests.get(url)
     if infos:
-        infos == infos.json()
+        infos = json.loads(infos.text)
         print(type(infos))
         print(infos)
     else:
