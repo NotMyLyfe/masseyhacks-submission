@@ -133,3 +133,4 @@ dmypy.json
 flask_session/
 
 discord.log
+.idea
