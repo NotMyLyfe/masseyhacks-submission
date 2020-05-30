@@ -26,7 +26,8 @@ async def on_ready():
 async def help(ctx):
     emb = discord.Embed(title="COVID Data Commands", description="The commands in this bot", color=0xff0000)
     emb.add_field(name="c!help", value="Displays this help embed.", inline=False)
-    emb.add_field(name="c!data [country code]", value="Displays the statistic for the specified country.", inline=False)
+    emb.add_field(name="c!data [2 letter country code]", value="Displays the statistic for the specified country.",
+                  inline=False)
     await ctx.send(embed=emb)
 
 
@@ -39,7 +40,7 @@ async def data(ctx, arg1):
     try:
         infos = infos['countrydata'][0]
     except KeyError:
-        await ctx.send("Incorrect input. The correct syntax is c!data [country code]")
+        await ctx.send("Incorrect input. The correct syntax is c!data [2 letter country code]")
         return
     finally:
         emb = discord.Embed(title="Coronavirus Stats for the Country of {}".format(infos['info']['title']),
@@ -57,7 +58,7 @@ async def data(ctx, arg1):
 @data.error
 async def data_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("Incorrect syntax. The correct syntax is c!data [country code]")
+        await ctx.send("Incorrect syntax. The correct syntax is c!data [2 letter country code]")
     else:
         raise error
 
