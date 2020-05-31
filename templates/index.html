@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="row">
-<div class="card" style="width: 18rem;">
+<div class="row" style="text-align:center;">
+<div class="card" style="width: 18rem; padding: 10px; margin: 10px;">
   <div class="card-body">
     <h3 class="card-title">Quick Stats</h3>
     <p style="color:green">Recovered: {{ recovered }}</p>
     <p style="color:red">Deaths: {{ deaths }}</p>
-    <p style="color:rgb(255, 255, 91)">Confirmed: {{ confirmed }}</p>
+    <p style="color:orange">Confirmed: {{ confirmed }}</p>
   </div>
 </div>
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem; padding: 10px; margin: 10px;">
   <img
     src="https://media.discordapp.net/attachments/716340212434993293/716655854304362537/colona.png?width=570&height=570"
     class="card-img-top" alt="Picture of the coronavirus and a bar graph">
@@ -20,7 +20,7 @@
       class="btn btn-primary">Invite the bot</a>
   </div>
 </div>
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem; padding: 10px; margin: 10px;">
   <div class="card-body">
     <h5 class="card-title">Find your local health agency</h5>
     <p class="card-text">Find your reigonal health agency with this handy tool.</p>
