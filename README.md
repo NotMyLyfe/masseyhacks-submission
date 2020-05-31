@@ -1,4 +1,4 @@
-# COVID Data (Working title)
+# COVID Data
 This project aims to use the latest statistics sourced from [an API](https://covid19api.com/) referencing Johns Hopkins CSSE for presentation on a website and Discord bot.
 
 ## Our Website
@@ -18,4 +18,4 @@ help command
 https://discord.com/api/oauth2/authorize?client_id=716343563083972618&permissions=281664&scope=bot
 
 ### Side Note
-We were not able to set up our Domain.com domain ([covidstats.tech](https://covidstats.tech)) in time, as DNS records have to update.
+We were not able to set up our Domain.com domain ([covidstats.tech](https://covidstats.tech)) in time, as DNS records have yet to update.
