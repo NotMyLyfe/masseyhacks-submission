@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if countryCode == "US" %}
+  <p>Your local health agency is the <a href="https://cdc.gov">CDC</a>.</p>
+{% elif countryCode == "CA" %}
+  <p>Your local health agency is the <a href="https://www.phac-aspc.gc.ca/">Public Health Agency of Canada</a>.</p>
+{% endif %}
+{% endblock %}
