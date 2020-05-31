@@ -21,7 +21,10 @@ def healthagency():
 
     if ':' in ip:
         ip = ip[:ip.find(':')]
+<<<<<<< HEAD
     
+=======
+>>>>>>> f22cd03ca6f830de6850eb7efcac2c23c17ae645
     if ip_address(ip).is_private:
         ip = requests.get(
         "https://api.ipify.org?format=json"
@@ -30,6 +33,7 @@ def healthagency():
     locationData = requests.get(
         'http://api.ipstack.com/' + ip + '?access_key=' + os.getenv('IPSTACK_KEY')
     ).json()
+<<<<<<< HEAD
     countryCode = locationData.get('country_code')
     
     arguments = {
@@ -41,3 +45,8 @@ def healthagency():
 
     return render_template('healthagency.html', **arguments)
     
+=======
+    print(locationData)
+    return render_template('healthagency.html', countryCode=locationData.get('country_code'))
+    #, recovered=worldInfo.get('TotalRecovered'), deaths=worldInfo.get('TotalDeaths'), confirmed=worldInfo.get('TotalConfirmed')
+>>>>>>> f22cd03ca6f830de6850eb7efcac2c23c17ae645
