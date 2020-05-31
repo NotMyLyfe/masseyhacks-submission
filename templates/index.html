@@ -1,23 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-<div style="text-align:center">
-  <h1>Quick Stats:</h1>
-  <h4 id="recovered" style="color:green">Recovered: {{ recovered }}</h3>
-  <h4 id="recovered" style="color:red">Deaths: {{ deaths }}</h3>
-  <h4 id="recovered" style="color:yellow">Confirmed: {{ confirmed }}</h3>
 
-  <pre>     </pre>
-  <h1>Covid Data Bot</h1>
-  <h3>Get current data about the coronavirus. Uses data from Johns Hopkins University.</h3>
-  <a class="btn btn-primary"
-    href="https://discord.com/api/oauth2/authorize?client_id=716343563083972618&permissions=281664&scope=bot"
-    role="button">Invite the bot</a>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">Quick Stats</h3>
+    <p style="color:green">Recovered: {{ recovered }}</p>
+    <p style="color:red">Deaths: {{ deaths }}</p>
+    <p style="color:rgb(255, 255, 91)">Confirmed: {{ confirmed }}</p>
+  </div>
 </div>
-<pre>     </pre>
-<div style="text-align:center">
-<h1>Find your local health agency</h1>
-<a class="btn btn-primary"
-    href="/healthagency"
-    role="button">Go</a>
+<div class="card" style="width: 18rem;">
+  <img
+    src="https://media.discordapp.net/attachments/716340212434993293/716655854304362537/colona.png?width=570&height=570"
+    class="card-img-top" alt="Picture of the coronavirus and a bar graph">
+  <div class="card-body">
+    <h5 class="card-title">Covid Data Bot</h5>
+    <p class="card-text">This discord bot provides more detailed information about the coronavirus.</p>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=716343563083972618&permissions=281664&scope=bot"
+      class="btn btn-primary">Invite the bot</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Find your local health agency</h5>
+    <p class="card-text">Find your reigonal health agency with this handy tool.</p>
+    <a href="/healthagency" class="btn btn-primary">Use the tool</a>
+  </div>
 </div>
 {% endblock %}

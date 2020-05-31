@@ -20,6 +20,7 @@ with open("the_Countries.json", "r") as read_file:
 
 @bot.event
 async def on_ready():
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="data fly by | c!help"))
     print('The bot has logged in under the account ' + bot.user.name + "#" + bot.user.discriminator)
 
 
