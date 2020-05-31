@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
 <div style="text-align:center">
+  <h1>Quick Stats:</h1>
+  <h4 id="recovered" style="color:green">Recovered: {{ recovered }}</h3>
+  <h4 id="recovered" style="color:red">Deaths: {{ deaths }}</h3>
+  <h4 id="recovered" style="color:yellow">Confirmed: {{ confirmed }}</h3>
+
+  <pre>     </pre>
   <h1>Covid Data Bot</h1>
   <h3>Get current data about the coronavirus. Uses data from Johns Hopkins University.</h3>
   <a class="btn btn-primary"
