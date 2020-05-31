@@ -18,7 +18,6 @@ def healthagency():
     ip = headers_list[0] if headers_list else request.remote_addr
     if ':' in ip:
         ip = ip[:ip.find(':')]
-    print()
     if ip_address(ip).is_private:
         ip = requests.get(
         "https://api.ipify.org?format=json"
@@ -30,4 +29,3 @@ def healthagency():
     print(locationData)
     return render_template('healthagency.html', countryCode=locationData.get('country_code'))
     #, recovered=worldInfo.get('TotalRecovered'), deaths=worldInfo.get('TotalDeaths'), confirmed=worldInfo.get('TotalConfirmed')
-    
