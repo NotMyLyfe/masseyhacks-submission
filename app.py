@@ -9,9 +9,16 @@ Session(app)
 @app.route("/")
 def index():
     return render_template('index.html')
+
 @app.route("/healthagency")
 def healthagency():
-    return render_template('healthagency.html')
+    ip = requests.get(
+        "https://api.ipify.org?format=json"
+    ).json().get('ip')
+    countryInfo = requests.get(
+        'https://api.bigdatacloud.net/data/country-by-ip?ip=' + ip + '&localityLanguage=en&key=bf533feb04e84279b9d098d9a6e5886b'
+    ).json()
+    return render_template('healthagency.html', countryCode=countryInfo.get('country').get('isoAlpha2'))
     
 if __name__ == "__main__":
     app.run()
