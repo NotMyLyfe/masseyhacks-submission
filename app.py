@@ -12,11 +12,8 @@ def index():
 
 @app.route("/healthagency")
 def healthagency():
-    ip = request.environ['REMOTE_ADDR']
-    #if ip == '127.0.0.1':
-        #ip = requests.get(
-        #    "https://api.ipify.org?format=json"
-        #).json().get('ip')
+    headers_list = request.headers.getlist("X-Forwarded-For")
+    ip = headers_list[0] if headers_list else request.remote_addr
     return ip
     #worldInfo = requests.get("https://api.covid19api.com/world/total").json()
     countryInfo = requests.get(
