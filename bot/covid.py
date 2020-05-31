@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import json
+import os
 import logging  # remove logging in release
 
 logger = logging.getLogger('discord')
@@ -13,10 +14,10 @@ logger.addHandler(handler)
 bot = commands.Bot(command_prefix='c!', description="A bot with COVID-19 Statistics")
 bot.remove_command('help')
 
-with open('token.txt', 'r') as token:
-    token = token.read()
+token = os.getenv('COVID-Token')
 with open("the_Countries.json", "r") as read_file:
     countries = json.load(read_file)
+
 
 @bot.event
 async def on_ready():
