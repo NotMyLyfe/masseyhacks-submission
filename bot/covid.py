@@ -37,7 +37,7 @@ async def data(ctx, *args):
     if len(args[0].lower()) == 2:
         country = args[0].lower()
     else:
-        arghs = args
+        arghs = list(args)
         echo = " "
         while arghs:
             echo = echo + " " + arghs[0]
