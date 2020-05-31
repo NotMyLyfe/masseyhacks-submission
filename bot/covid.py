@@ -15,7 +15,8 @@ bot.remove_command('help')
 
 with open('token.txt', 'r') as token:
     token = token.read()
-
+with open("the_Countries.json", "r") as read_file:
+    countries = json.load(read_file)
 
 @bot.event
 async def on_ready():
@@ -26,14 +27,22 @@ async def on_ready():
 async def help(ctx):
     emb = discord.Embed(title="COVID Data Commands", description="The commands in this bot", color=0xff0000)
     emb.add_field(name="c!help", value="Displays this help embed.", inline=False)
-    emb.add_field(name="c!data [2 letter country code]", value="Displays the statistic for the specified country.",
-                  inline=False)
+    emb.add_field(name="c!data [country name or 2 letter code]", value="Displays the statistics for the specified "
+                                                                       "country.", inline=False)
     await ctx.send(embed=emb)
 
 
 @bot.command()
-async def data(ctx, arg1):
-    country = arg1.lower()
+async def data(ctx, *args):
+    if len(args[0].lower()) == 2:
+        country = args[0].lower()
+    else:
+        arghs = args
+        echo = " "
+        while arghs:
+            echo = echo + " " + arghs[0]
+            del arghs[0]
+        country = countries[echo]
     url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
     infos = requests.get(url)
     infos = json.loads(infos.text)
@@ -58,7 +67,7 @@ async def data(ctx, arg1):
 @data.error
 async def data_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("Incorrect syntax. The correct syntax is c!data [2 letter country code]")
+        await ctx.send("Incorrect syntax. The correct syntax is c!data [country name or 2 letter code]")
     else:
         raise error
 
