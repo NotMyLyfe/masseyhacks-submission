@@ -2,6 +2,8 @@ import uuid
 import requests
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
+import os
+from ipaddress import ip_address
 
 app = Flask(__name__)
 Session(app)
@@ -12,18 +14,20 @@ def index():
 
 @app.route("/healthagency")
 def healthagency():
-    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    if ip == '127.0.0.1':
+    headers_list = request.headers.getlist("X-Forwarded-For")
+    ip = headers_list[0] if headers_list else request.remote_addr
+    if ':' in ip:
+        ip = ip[:ip.find(':')]
+    print()
+    if ip_address(ip).is_private:
         ip = requests.get(
-            "https://api.ipify.org?format=json"
+        "https://api.ipify.org?format=json"
         ).json().get('ip')
-    return ip
     #worldInfo = requests.get("https://api.covid19api.com/world/total").json()
-    countryInfo = requests.get(
-        'https://api.bigdatacloud.net/data/country-by-ip?ip=' + ip + '&localityLanguage=en&key=bf533feb04e84279b9d098d9a6e5886b'
+    locationData = requests.get(
+        'http://api.ipstack.com/' + ip + '?access_key=' + os.getenv('IPSTACK_KEY')
     ).json()
-    return render_template('healthagency.html', countryCode=countryInfo.get('country').get('isoAlpha2'))
+    print(locationData)
+    return render_template('healthagency.html', countryCode=locationData.get('country_code'))
     #, recovered=worldInfo.get('TotalRecovered'), deaths=worldInfo.get('TotalDeaths'), confirmed=worldInfo.get('TotalConfirmed')
     
-if __name__ == "__main__":
-    app.run()
