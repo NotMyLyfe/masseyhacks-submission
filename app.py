@@ -13,7 +13,7 @@ Session(app)
 def index():
     worldInfo = requests.get("https://api.covid19api.com/world/total").json()
     return render_template('index.html', recovered=worldInfo.get('TotalRecovered'), deaths=worldInfo.get('TotalDeaths'), confirmed=worldInfo.get('TotalConfirmed'))
-@app.route("about")
+@app.route("/about")
 def about():
     return render_template('about.html')
 
