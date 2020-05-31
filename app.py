@@ -10,24 +10,34 @@ Session(app)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    worldInfo = requests.get("https://api.covid19api.com/world/total").json()
+    return render_template('index.html', recovered=worldInfo.get('TotalRecovered'), deaths=worldInfo.get('TotalDeaths'), confirmed=worldInfo.get('TotalConfirmed'))
 
 @app.route("/healthagency")
 def healthagency():
     headers_list = request.headers.getlist("X-Forwarded-For")
+
     ip = headers_list[0] if headers_list else request.remote_addr
+
     if ':' in ip:
         ip = ip[:ip.find(':')]
-    print()
+    
     if ip_address(ip).is_private:
         ip = requests.get(
         "https://api.ipify.org?format=json"
         ).json().get('ip')
-    #worldInfo = requests.get("https://api.covid19api.com/world/total").json()
+    
     locationData = requests.get(
         'http://api.ipstack.com/' + ip + '?access_key=' + os.getenv('IPSTACK_KEY')
     ).json()
-    print(locationData)
-    return render_template('healthagency.html', countryCode=locationData.get('country_code'))
-    #, recovered=worldInfo.get('TotalRecovered'), deaths=worldInfo.get('TotalDeaths'), confirmed=worldInfo.get('TotalConfirmed')
+    countryCode = locationData.get('country_code')
+    
+    arguments = {
+        'countryCode' : countryCode
+    }
+
+    if countryCode == 'US' or countryCode == 'CA':
+        arguments['regionCode'] = locationData.get('region_code')
+
+    return render_template('healthagency.html', **arguments)
     
