@@ -4,6 +4,7 @@ from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 import os
 from ipaddress import ip_address
+import json
 
 app = Flask(__name__)
 Session(app)
@@ -32,12 +33,14 @@ def healthagency():
     ).json()
     countryCode = locationData.get('country_code')
     
-    arguments = {
-        'countryCode' : countryCode
-    }
+    with open('healthAgencies.json', 'r') as file:
+        healthAgencies = json.load(file)
+
+    arguments = {}
 
     if countryCode == 'US' or countryCode == 'CA':
-        arguments['regionCode'] = locationData.get('region_code')
+        arguments['national'] = healthAgencies[countryCode]['nationalHealthAgency']
+        arguments['regional'] = healthAgencies[countryCode]['regionalHealthAgencies'][locationData.get('region_code')]
 
     return render_template('healthagency.html', **arguments)
     
