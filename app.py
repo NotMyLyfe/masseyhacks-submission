@@ -12,11 +12,11 @@ def index():
 
 @app.route("/healthagency")
 def healthagency():
-    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    if ip == '127.0.0.1':
-        ip = requests.get(
-            "https://api.ipify.org?format=json"
-        ).json().get('ip')
+    ip = request.environ['REMOTE_ADDR']
+    #if ip == '127.0.0.1':
+        #ip = requests.get(
+        #    "https://api.ipify.org?format=json"
+        #).json().get('ip')
     return ip
     #worldInfo = requests.get("https://api.covid19api.com/world/total").json()
     countryInfo = requests.get(
