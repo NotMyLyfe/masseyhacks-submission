@@ -42,7 +42,7 @@ async def data(ctx, *args):
         while arghs:
             echo = echo + " " + arghs[0]
             del arghs[0]
-        country = countries[echo]
+        country = countries[echo.strip()]
     url = 'https://api.thevirustracker.com/free-api?countryTotal=' + country
     infos = requests.get(url)
     infos = json.loads(infos.text)
